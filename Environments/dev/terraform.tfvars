@@ -11,8 +11,8 @@ subnet_address = ["10.0.1.0/24"]
 subnet_name    = "Middletier-Interconnect"
 
 ### -------- SQL Server ----------- ###
-admin_login          = "thoeri"
-admin_login_password = "Tifjlsf372878@)#"
+admin_login          = ""
+admin_login_password = ""
 elasticpool_name     = "globaladmin-pool"
 sql_server_name      = "globaladmin-web-sql-server"
 vnet_rule_name       = "globaladmin-vnet-rule"
