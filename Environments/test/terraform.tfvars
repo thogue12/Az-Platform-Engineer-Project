@@ -12,8 +12,8 @@ subnet_address = ["10.0.0.0/24"]
 
 ### -------- SQL Server ----------- ###
 sql_server_name      = "global-admin-sql-db"
-admin_login          = "timboslice"
-admin_login_password = "Bonquiqui12567"
+admin_login          = ""
+admin_login_password = ""
 elasticpool_name     = "global-admin-pool"
 vnet_rule_name       = "GlobalAdmin-VNET-Rule"
 
