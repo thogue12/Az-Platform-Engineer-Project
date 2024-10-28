@@ -95,15 +95,15 @@ variable "sku_name" {
 
 variable "secrete_permissions" {
   type        = list(string)
-  description = "can be any or all of the following values: Get, Backup, Delete, List, Purge, Recover, Restore, Set."
+  description = "can be any or all of the following values: Get, Backup, Delete, List, Purge, Recover, Restore, Set, you can also use the * wild card for all permission."
 }
 variable "key_permissions" {
   type        = list(string)
-  description = "can be any or all of the following values: Create, Delete,Get,Purge, Recover,Update,GetRotationPolicy,SetRotationPolicy "
+  description = "can be any or all of the following values: Create, Delete,Get,Purge, Recover,Update,GetRotationPolicy,SetRotationPolicy, you can also use the * wild card for all permission "
 }
 variable "storage_permissions" {
   type        = list(string)
-  description = "can be any or all of the following values: Get, Backup, Delete, DeleteSAS, GetSAS, List, Purge, Recover, RegenerateKey, Restore, Set, SetSAS, Update"
+  description = "can be any or all of the following values: Get, Backup, Delete, DeleteSAS, GetSAS, List, Purge, Recover, RegenerateKey, Restore, Set, SetSAS, Update,  you can also use the * wild card for all permission."
 }
 
 #### --------------------------------Function App----------------------#####
