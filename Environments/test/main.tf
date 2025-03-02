@@ -30,6 +30,7 @@ module "sql_server" {
   elasticpool_name     = "${var.elasticpool_name}-${var.environment}"
   vnet_rule_name       = "${var.vnet_name}-${var.environment}"
   database_name        = "${var.database_name}-${var.environment}"
+  database_count       = var.database_count
 }
 
 module "app_service_plan" {
@@ -54,10 +55,11 @@ module "key_vault" {
   key_permissions          = var.key_permissions
   storage_permissions      = var.storage_permissions
   sku_name                 = var.sku_name
-  db_password              = module.sql_server.administrator_login_password
+  db_password              = module.sql_server.admin_login_password
   db_username              = module.sql_server.administrator_login
   location                 = module.resource_group.location
   name                     = module.resource_group.resource_group_name
+  connection_string = "${module.sql_server.sql_server_id};${module.sql_server.administrator_login};${module.sql_server.admin_login_password}"
 }
 
 module "storage_account" {

@@ -26,13 +26,19 @@ resource "azurerm_key_vault" "this_key_vault" {
 }
 
 resource "azurerm_key_vault_secret" "db_password" {
-  name         = var.db_password
-  value        = "szechuan"
+  name         = "db-password"
+  value        = var.db_password
   key_vault_id = azurerm_key_vault.this_key_vault.id
 }
 
 resource "azurerm_key_vault_secret" "db_username" {
-  name         = var.db_username
-  value        = "szechuan"
+  name         = "db-username"
+  value        = var.db_username
+  key_vault_id = azurerm_key_vault.this_key_vault.id
+}
+
+resource "azurerm_key_vault_secret" "connection_string" {
+  name         = "GlobalAdminDatabaseConnectionString"
+  value        = var.connection_string
   key_vault_id = azurerm_key_vault.this_key_vault.id
 }

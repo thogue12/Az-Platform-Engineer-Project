@@ -15,8 +15,10 @@ sql_server_name      = "tims-sql-server"
 admin_login          = ""
 admin_login_password = ""
 elasticpool_name     = "tims-elastic-pool"
+connection_string = "value"
 vnet_rule_name       = "tims-vnet-rule"
-database_name = "Tims-database-1"
+database_name        = "Tims-database"
+database_count       = 2
 
 ### -------- App Service Plan ---------- ###
 web_app_name     = "tims-web-app_service-plan"

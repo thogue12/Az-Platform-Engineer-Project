@@ -54,8 +54,16 @@ variable "database_name" {
 }
 
 variable "edtu" {
-  type = number
+  type    = number
   default = 100
+}
+variable "database_count" {
+  type    = number
+  default = 1
+}
+
+variable "connection_string" {
+  type = string
 }
 
 #######-----------------------------App Service Plan-------------------############

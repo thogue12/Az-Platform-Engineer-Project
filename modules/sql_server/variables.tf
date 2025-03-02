@@ -37,3 +37,8 @@ variable "edtu" {
   type = number
   default = 100
 }
+
+variable "database_count" {
+  type = number
+  default = 1
+}

@@ -41,7 +41,8 @@ resource "azurerm_mssql_elasticpool" "this_elastic_pool" {
 }
 
 resource "azurerm_mssql_database" "this_db" {
-  name         = var.database_name
+  count = var.database_count
+  name         = "${var.database_name}-${count.index}"
   server_id    = azurerm_mssql_server.this_sql_server.id
   elastic_pool_id = azurerm_mssql_elasticpool.this_elastic_pool.id
   collation    = "SQL_Latin1_General_CP1_CI_AS"
