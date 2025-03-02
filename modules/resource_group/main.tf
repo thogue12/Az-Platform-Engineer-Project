@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "this-rg" {
-  name     = "rg-globaladmin-${var.environment}"  
+  name     = var.name 
   location = var.location                       
 }
