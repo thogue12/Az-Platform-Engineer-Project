@@ -24,18 +24,32 @@ resource "azurerm_mssql_elasticpool" "this_elastic_pool" {
   location            = var.location
   server_name         = var.sql_server_name
   license_type        = "LicenseIncluded"
-  max_size_gb         = 4.8828125
+  max_size_gb         = 50
 
   sku {
-    name     = "BasicPool"
-    tier     = "Basic"
-    capacity = 50
+    name     = "StandardPool"
+    tier     = "Standard"
+    capacity = var.edtu
   }
 
   per_database_settings {
     min_capacity = 0
-    max_capacity = 5
+    max_capacity = 50
   }
 
   depends_on = [ azurerm_mssql_server.this_sql_server ]
+}
+
+resource "azurerm_mssql_database" "this_db" {
+  name         = var.database_name
+  server_id    = azurerm_mssql_server.this_sql_server.id
+  elastic_pool_id = azurerm_mssql_elasticpool.this_elastic_pool.id
+  collation    = "SQL_Latin1_General_CP1_CI_AS"
+  license_type = "LicenseIncluded"
+
+  lifecycle {
+    prevent_destroy = false
+  }
+
+  depends_on = [ azurerm_mssql_elasticpool.this_elastic_pool ]
 }

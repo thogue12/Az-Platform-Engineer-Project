@@ -49,6 +49,14 @@ variable "admin_login_password" {
 variable "elasticpool_name" {
   type = string
 }
+variable "database_name" {
+  type = string
+}
+
+variable "edtu" {
+  type = number
+  default = 100
+}
 
 #######-----------------------------App Service Plan-------------------############
 variable "web_app_name" {
@@ -106,22 +114,29 @@ variable "storage_permissions" {
   description = "can be any or all of the following values: Get, Backup, Delete, DeleteSAS, GetSAS, List, Purge, Recover, RegenerateKey, Restore, Set, SetSAS, Update,  you can also use the * wild card for all permission."
 }
 
-#### --------------------------------Function App----------------------#####
+#### --------------------------------Function App-----------------------------------------------------#####
 
 variable "function_app_name" {
   type = string
 }
 
-#####-------------------------------------- Storage Account---------------------------#########
+#####-------------------------------------- Storage Account-------------------------------------------#########
 
 variable "contianer_name" {
-    type = string
+  type = string
 }
 
 variable "contianer_access_type" {
-    type = string
-    description = "private or public"
+  type        = string
+  description = "private or public"
 }
 variable "storage_account_name" {
-    type = string
+  type = string
 }
+
+##### --------------------------------------- Web App ----------------------------------------------------#####
+
+variable "web_application_name" {
+  type = string
+}
+

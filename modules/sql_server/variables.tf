@@ -28,3 +28,12 @@ variable "subnet_id" {
 variable "vnet_rule_name" {
   type = string
 }
+
+variable "database_name" {
+  type = string
+}
+
+variable "edtu" {
+  type = number
+  default = 100
+}

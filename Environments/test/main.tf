@@ -29,6 +29,7 @@ module "sql_server" {
   subnet_id            = module.virtual_network.subnet_id
   elasticpool_name     = "${var.elasticpool_name}-${var.environment}"
   vnet_rule_name       = "${var.vnet_name}-${var.environment}"
+  database_name        = "${var.database_name}-${var.environment}"
 }
 
 module "app_service_plan" {
@@ -60,21 +61,29 @@ module "key_vault" {
 }
 
 module "storage_account" {
-  source = "../../modules/storage_account"
+  source                = "../../modules/storage_account"
   contianer_access_type = var.contianer_access_type
-  contianer_name = "${var.contianer_name}-${var.environment}"
-  storage_account_name = "${var.storage_account_name}${var.environment}"
-  name = module.resource_group.resource_group_name
-  location = module.resource_group.location
+  contianer_name        = "${var.contianer_name}-${var.environment}"
+  storage_account_name  = "${var.storage_account_name}${var.environment}"
+  name                  = module.resource_group.resource_group_name
+  location              = module.resource_group.location
 }
 
 module "function_app" {
-  source = "../../modules/function_app"
-  name = module.resource_group.resource_group_name
-  location = module.resource_group.location
-  function_app_name = var.function_app_name
+  source                     = "../../modules/function_app"
+  name                       = module.resource_group.resource_group_name
+  location                   = module.resource_group.location
+  function_app_name          = var.function_app_name
   storage_account_access_key = module.storage_account.storage_account_primary_key
-  storage_account_name = module.storage_account.storage_account_name
-  app_service_plan_id = module.app_service_plan.app_service_plan_id
-  subnet_id = module.virtual_network.subnet_id
+  storage_account_name       = module.storage_account.storage_account_name
+  app_service_plan_id        = module.app_service_plan.app_service_plan_id
+  subnet_id                  = module.virtual_network.subnet_id
+}
+
+module "web_app" {
+  source                  = "../../modules/web_app"
+  name                    = module.resource_group.resource_group_name
+  location                = module.resource_group.location
+  web_app_service_plan_id = module.app_service_plan.web_app_service_plan_id
+  web_application_name    = "${var.web_application_name}-${var.environment}"
 }
