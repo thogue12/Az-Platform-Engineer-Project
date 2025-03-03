@@ -12,6 +12,12 @@ on:
           - dev
           - test
 
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+
 jobs:
 
   Install_CLIs:
