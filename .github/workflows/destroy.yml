@@ -2,6 +2,15 @@ name: Terraform Cleanup
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environrment"
+        required: true
+        default: "test"
+        type: choice
+        options:
+          - dev
+          - test
 
 jobs:
   terraform-cleanup:
