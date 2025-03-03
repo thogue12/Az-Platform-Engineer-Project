@@ -1,0 +1,35 @@
+name: Terraform Cleanup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform-cleanup:
+    name: 'Post Apply Cleanup'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout GitHub repository'
+      uses: actions/checkout@v4
+
+    - name: 'Configure AWS credentials'
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+         secret-id: ${{ secrets.AZURE_SECRET_ID }}
+
+    - name: 'Set up Terraform'
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "latest"
+
+    - name: 'Terraform Init'
+      run: terraform init
+
+    - name: 'Terraform Plan Destroy'
+      run: terraform plan -destroy -out=tfplan-destroy
+
+    - name: 'Terraform Apply Destroy'
+      run: terraform destroy -auto-approve 
