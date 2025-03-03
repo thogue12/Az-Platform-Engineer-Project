@@ -36,11 +36,7 @@ jobs:
       - name: "Install Azure Cli"
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-      
-      - name: "az login"
-        run: |
-          az login
-          
+
       - name: "Log into Azure"
         uses: azure/login@v2
         with:
