@@ -16,6 +16,11 @@ jobs:
   terraform-cleanup:
     name: 'Post Apply Cleanup'
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - name: 'Checkout GitHub repository'

@@ -12,11 +12,6 @@ on:
           - dev
           - test
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
-
 
 jobs:
 
@@ -25,6 +20,10 @@ jobs:
     name: "Install Terraform and Azure ClI and Authenticate to Azure"
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: "Checkout GitHub Repo"
         uses: actions/checkout@v4
@@ -44,7 +43,7 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          secret-id: ${{ secrets.AZURE_SECRET_ID }}
+  
     
 
       - name: "Run Terraform init"
