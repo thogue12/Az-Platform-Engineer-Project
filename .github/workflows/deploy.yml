@@ -4,6 +4,15 @@ on:
   push:
 
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environrment"
+        required: true
+        default: "test"
+        type: choice
+        options:
+          - dev
+          - test
 
 jobs:
 
@@ -11,6 +20,7 @@ jobs:
 
     name: "Install Terraform and Azure ClI and Authenticate to Azure"
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: "Checkout GitHub Repo"
         uses: actions/checkout@v4
