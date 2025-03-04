@@ -44,14 +44,14 @@ jobs:
 
 
       - name: "Run Terraform plan"
-        run: terraform -chdir=terraform/environments/${{ inputs.environment }} plan -out=tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan
           
       - name: "Run Terraform Format"
-        run: terraform -chdir=environments/${{ inputs.environment }} fmt
+        run: terraform -chdir=Environments/${{ inputs.environment }} fmt
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=environments/${{ inputs.environment }} apply -auto-approve tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan
        
         
 
