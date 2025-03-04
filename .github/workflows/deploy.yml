@@ -40,17 +40,17 @@ jobs:
 
       - name: "Run Terraform init"
         run: |
-          terraform -chdir=https://github.com/thogue12/Az-Platform-Engineer-Project/tree/40d3a7c74b1865693e24950e5822ee9016f4cf71/Environments/${{ inputs.environment }} init
+          terraform -chdir=teraform/Environments/${{ inputs.environment }} init
 
       - name: "Run Terraform plan"
-        run: terraform -chdir=https://github.com/thogue12/Az-Platform-Engineer-Project/tree/40d3a7c74b1865693e24950e5822ee9016f4cf71/Environments/${{ inputs.environment }} plan -out=tfplan
+        run: terraform -chdir=teraform/Environments/${{ inputs.environment }} plan -out=tfplan
           
       - name: "Run Terraform Format"
-        run: terraform -chdir=https://github.com/thogue12/Az-Platform-Engineer-Project/tree/40d3a7c74b1865693e24950e5822ee9016f4cf71/Environments/${{ inputs.environment }} fmt
+        run: terraform -chdir=teraform/Environments/${{ inputs.environment }} fmt
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=https://github.com/thogue12/Az-Platform-Engineer-Project/tree/40d3a7c74b1865693e24950e5822ee9016f4cf71/Environments/${{ inputs.environment }} apply -auto-approve tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan
        
         
 
