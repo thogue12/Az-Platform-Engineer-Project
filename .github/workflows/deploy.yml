@@ -6,11 +6,7 @@ on:
       environment:
         description: "Select environrment"
         required: true
-        default: "test"
-        type: choice
-        options:
-          - dev
-          - test
+        type: environment
 
 permissions:
    id-token: write
@@ -42,19 +38,20 @@ jobs:
     
 
       - name: "Run Terraform init"
-        run: terraform init
+        run: |
+          terraform init 
+
 
       - name: "Run Terraform plan"
         run: terraform plan
-      
+          
       - name: "Run Terraform Format"
         run: terraform fmt
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve tfplan
-        env:
-          TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+       
         
 
       
