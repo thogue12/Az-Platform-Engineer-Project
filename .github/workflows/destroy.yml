@@ -41,12 +41,14 @@ jobs:
 
     - name: 'Terraform Init'
       run: terraform init
+      env:
+          TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: 'Terraform Plan Destroy'
       run: terraform plan -destroy -out=tfplan-destroy
 
+
     - name: 'Terraform Apply Destroy'
       run: terraform destroy -auto-approve 
-      env:
-          TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
       
