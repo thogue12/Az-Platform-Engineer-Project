@@ -36,24 +36,22 @@ jobs:
   
       - name: "Install terraform on runner"
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "latest"
     
 
       - name: "Run Terraform init"
         run: |
-          terraform init -chdir=terraform/environments/$TF_ENV
+          terraform -chdir=environments/${{ inputs.environment }} init
 
 
       - name: "Run Terraform plan"
-        run: terraform plan -chdir=terraform/environments/$TF_ENV
+        run: terraform -chdir=terraform/environments/${{ inputs.environment }} plan -out=tfplan
           
       - name: "Run Terraform Format"
-        run: terraform fmt -chdir=terraform/environments/$TF_ENV
+        run: terraform -chdir=environments/${{ inputs.environment }} fmt
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve tfplan
+        run: terraform -chdir=environments/${{ inputs.environment }} apply -auto-approve tfplan
        
         
 
