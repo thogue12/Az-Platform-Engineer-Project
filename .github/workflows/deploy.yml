@@ -24,6 +24,9 @@ jobs:
       - name: "Checkout GitHub Repo"
         uses: actions/checkout@v4
 
+      - name: set environement variable
+        run: echo "TF_ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
       - name: "Login to Azure"
         uses: azure/login@v2
         with:
@@ -39,14 +42,14 @@ jobs:
 
       - name: "Run Terraform init"
         run: |
-          terraform init 
+          terraform init -chdir=terraform/environments/$TF_ENV
 
 
       - name: "Run Terraform plan"
-        run: terraform plan
+        run: terraform plan -chdir=terraform/environments/$TF_ENV
           
       - name: "Run Terraform Format"
-        run: terraform fmt
+        run: terraform fmt -chdir=terraform/environments/$TF_ENV
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
