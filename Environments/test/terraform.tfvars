@@ -12,10 +12,10 @@ subnet_address = ["10.0.0.0/24"]
 
 ### -------- SQL Server --------------- ###
 sql_server_name      = "tims-sql-server"
-admin_login          = ""
-admin_login_password = ""
+# admin_login          = ""
+# admin_login_password = ""
 elasticpool_name     = "tims-elastic-pool"
-connection_string = "value"
+connection_string    = "value"
 vnet_rule_name       = "tims-vnet-rule"
 database_name        = "Tims-database"
 database_count       = 2
