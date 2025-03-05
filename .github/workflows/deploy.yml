@@ -50,21 +50,21 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: "Run Terraform init"
-        run: terraform -chdir=Environments/${{ inputs.environment }} init -var="resource_group=${{ inputs.resource_group }}" tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" init 
         
       - name: "Run Terraform plan"
         run: |
           export TF_LOG=DEBUG
-          terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan -var="resource_group=${{ inputs.resource_group }}" tfplan
+          terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" plan -out=tfplan 
         
           
       - name: "Run Terraform Format"
-        run: terraform -chdir=Environments/${{ inputs.environment }} fmt -var="resource_group=${{ inputs.resource_group }}" tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" fmt
         
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan -var="resource_group=${{ inputs.resource_group }}" tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" apply -auto-approve tfplan
         
        
         
