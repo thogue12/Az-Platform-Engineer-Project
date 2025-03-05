@@ -27,6 +27,8 @@ module "sql_server" {
   subnet_id            = module.virtual_network.subnet_id
   elasticpool_name     = "${var.elasticpool_name}-${var.environment}"
   vnet_rule_name       = "${var.vnet_name}-${var.environment}"
+  database_count = var.database_count
+  database_name = var.database_name
 }
 
 module "app_service_plan" {

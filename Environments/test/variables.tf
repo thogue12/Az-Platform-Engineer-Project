@@ -1,3 +1,7 @@
+variable "azure_subscription_id" {
+  type = string
+}
+
 variable "name" {
   type        = string
   description = "name of the resource group"
