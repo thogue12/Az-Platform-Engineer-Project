@@ -7,10 +7,16 @@ on:
         description: "Select environrment"
         required: true
         type: environment
+      resource_group:
+        description: "Enter a resource group name"
+        required: true
+        type: string 
+        
 
 permissions:
    id-token: write
    contents: read
+   
 env:
     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -25,7 +31,7 @@ jobs:
     name: "Install Terraform and Azure ClI and Authenticate to Azure"
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
-
+    
     steps:
       - name: "Checkout GitHub Repo"
         uses: actions/checkout@v4
@@ -44,21 +50,21 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: "Run Terraform init"
-        run: terraform -chdir=Environments/${{ inputs.environment }} init
+        run: terraform -chdir=Environments/${{ inputs.environment }} init -var="resource_group=${{ inputs.resource_group }}" tfplan
         
       - name: "Run Terraform plan"
         run: |
           export TF_LOG=DEBUG
-          terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan
+          terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan -var="resource_group=${{ inputs.resource_group }}" tfplan
         
           
       - name: "Run Terraform Format"
-        run: terraform -chdir=Environments/${{ inputs.environment }} fmt
+        run: terraform -chdir=Environments/${{ inputs.environment }} fmt -var="resource_group=${{ inputs.resource_group }}" tfplan
         
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan -var="resource_group=${{ inputs.resource_group }}" tfplan
         
        
         
