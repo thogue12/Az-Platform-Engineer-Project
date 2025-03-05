@@ -30,8 +30,8 @@ jobs:
     - name: 'Checkout GitHub repository'
       uses: actions/checkout@v4
 
-    - name: 'Configure AWS credentials'
-      uses: aws-actions/configure-aws-credentials@v1
+    - name: "Login to Azure"
+      uses: azure/login@v2
       with:
          client-id: ${{ secrets.AZURE_CLIENT_ID }}
          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -39,15 +39,13 @@ jobs:
          secret-id: ${{ secrets.AZURE_SECRET_ID }}
 
     - name: 'Set up Terraform'
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: "latest"
+      uses: hashicorp/setup-terraform@v3
+
 
     - name: 'Terraform Init'
       run: terraform init
 
       
-
     - name: 'Terraform Plan Destroy'
       run: terraform plan -destroy -out=tfplan-destroy
 
