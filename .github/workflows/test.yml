@@ -22,7 +22,7 @@ jobs:
     
     trivy_scan:
         name: Trivy Scan for IaC
-        runs-on: ubuntu-lates
+        runs-on: ubuntu-latest
 
         steps:
         
