@@ -1,46 +1,36 @@
 name: Deploy to Azure
 
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      environment:
-        description: "Select environrment"
-        required: true
-        type: environment
-
-      resource_group:
-        description: "Enter a resource group name"
-        required: true
-        type: string 
-
-      resource_location:
-        description: "Resource location"
-        required: true
-        default: "eastus"
-        type: string
-
-      storage_account_name:
-        description: "unique name for the storage account"
-        required: true
-        type: string
-
-      database_count:
-        description: "How many databases would you like?"
-        required: true
-        type: choice
-        default: "1"
-        options:
-          - 1
-          - 2
-          - 3
-          - 4
-
-        
-
-permissions:
-   id-token: write
-   contents: read
-   
+        environment:
+          description: "Select environrment: dev or test"
+          required: true
+          type: string
+          default: test
+  
+        resource_group:
+          description: "Enter a resource group name"
+          required: true
+          type: string 
+  
+        resource_location:
+          description: "Resource location"
+          required: true
+          default: "eastus"
+          type: string
+  
+        storage_account_name:
+          description: "unique name for the storage account"
+          required: true
+          type: string
+  
+        database_count:
+          description: "How many databases would you like?"
+          required: true
+          type: string
+          default: "1"
+  
 env:
     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

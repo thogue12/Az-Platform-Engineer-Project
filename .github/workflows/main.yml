@@ -2,6 +2,38 @@ name: Main Workflow
 on:
 
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environrment: dev or test"
+        required: true
+        type: environment
+
+      resource_group:
+        description: "Enter a resource group name"
+        required: true
+        type: string 
+
+      resource_location:
+        description: "Resource location"
+        required: true
+        default: "eastus"
+        type: string
+
+      storage_account_name:
+        description: "unique name for the storage account"
+        required: true
+        type: string
+
+      database_count:
+        description: "How many databases would you like?"
+        required: true
+        type: choice
+        default: "1"
+        options:
+          - 1
+          - 2
+          - 3
+          - 4
 
 permissions:
   contents: read
@@ -15,5 +47,11 @@ jobs:
       uses: ./.github/workflows/test.yml
     
     deploy:
-      uses: ./.github/workflows/deploy.yml
+      uses: ./.github/workflows/deploy2.yml
+      with:
+        environment: ${{ inputs.environment }}
+        resource_group: ${{ inputs.resource_group }}
+        storage_account_name: ${{ inputs.storage_account_name }}
+        database_count: ${{ inputs.database_count }}
+        resource_location: ${{ inputs.resource_location }}   
       needs: test
