@@ -11,6 +11,21 @@ on:
         description: "Enter a resource group name"
         required: true
         type: string 
+      resource_location:
+        description: "where would you like the resources built"
+        required: true
+        type: string
+      database_count:
+        description: "How many databases would you like?"
+        required: true
+        type: choice
+        default: "1"
+        options:
+          - 1
+          - 2
+          - 3
+          - 4
+
         
 
 permissions:
@@ -39,6 +54,8 @@ jobs:
       - name: set environement variable
         run: |
           echo "TF_VAR_name=${{ inputs.resource_group }}" >> $GITHUB_ENV
+          echo "TF_VAR_database_count=${{ inputs.database_count }}" >> $GITHUB_ENV
+          echo "TF_VAR_location=${{ inputs.resource_location }}" >> $GITHUB_ENV
 
       - name: "Login to Azure"
         uses: azure/login@v2

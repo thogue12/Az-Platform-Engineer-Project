@@ -1,6 +1,6 @@
 
 ### ------- Resource Group ---------- ###
-location    = "eastus2"
+# location    = "eastus2"
 environment = "dev"
 # name        = "tims-RG"
 
@@ -18,7 +18,7 @@ elasticpool_name     = "tims-elastic-pool"
 connection_string    = "value"
 vnet_rule_name       = "tims-vnet-rule"
 database_name        = "Tims-database"
-database_count       = 1
+# database_count       = 1
 
 ### -------- App Service Plan ---------- ###
 web_app_name     = "tims-web-app_service-plan"
