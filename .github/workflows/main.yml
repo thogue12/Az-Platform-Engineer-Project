@@ -1,7 +1,6 @@
 name: Main Workflow
 on:
-  push:
-  
+
   workflow_dispatch:
 
 permissions:
@@ -13,8 +12,8 @@ permissions:
 jobs: 
  
     test:
-      uses: ./.github/workflow/test.yml
+      uses: ./.github/workflows/test.yml
     
     deploy:
-      uses: ./.github/workflow/deploy.yml
+      uses: ./.github/workflowsdeploy.yml
       needs: test
