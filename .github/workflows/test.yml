@@ -8,7 +8,7 @@ jobs:
     # Run TfSec test against terraform config
     tfsec_scan:
         name: Run TfSec Scan
-        runs-on: ubuntu-lates
+        runs-on: ubuntu-latest
 
         steps:
 
