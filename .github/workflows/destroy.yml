@@ -9,7 +9,11 @@ on:
         default: "test"
         type: environment
         
-
+      
+      resource_group:
+        description: "Enter a resource group name"
+        required: true
+        type: string   
 permissions:
     id-token: write
     contents: read
@@ -35,7 +39,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: set environement variable
-      run: echo "TF_ENV=${{ inputs.environment }}"
+      run: |
+          echo "TF_VAR_name=${{ inputs.resource_group }}" >> $GITHUB_ENV
+          echo "TF_VAR_location=${{ inputs.resource_location }}" >> $GITHUB_ENV
+  
 
 
     - name: "Login to Azure"

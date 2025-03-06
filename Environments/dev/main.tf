@@ -44,3 +44,27 @@ module "app_service_plan" {
   api_sku_name       = var.api_sku_name
   web_app_sku_name   = var.web_app_sku_name
 }
+
+module "key_vault" {
+  source = "../../modules/key_vault"
+  purge_protection_enabled = var.purge_protection_enabled
+  key_valut_name           = "${var.key_valut_name}-${var.environment}"
+  secrete_permissions      = var.secrete_permissions
+  key_permissions          = var.key_permissions
+  storage_permissions      = var.storage_permissions
+  sku_name                 = var.sku_name
+  db_password              = module.sql_server.admin_login_password
+  db_username              = module.sql_server.administrator_login
+  location                 = module.resource_group.location
+  name                     = module.resource_group.resource_group_name
+  connection_string = "${module.sql_server.sql_server_id};${module.sql_server.administrator_login};${module.sql_server.admin_login_password}"
+}
+
+module "storage_account" {
+  source                = "../../modules/storage_account"
+  contianer_access_type = var.contianer_access_type
+  contianer_name        = "${var.contianer_name}-${var.environment}"
+  storage_account_name  = "${var.storage_account_name}${var.environment}"
+  name                  = module.resource_group.resource_group_name
+  location              = module.resource_group.location
+}

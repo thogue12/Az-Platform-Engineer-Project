@@ -7,14 +7,23 @@ on:
         description: "Select environrment"
         required: true
         type: environment
+
       resource_group:
         description: "Enter a resource group name"
         required: true
         type: string 
+
       resource_location:
-        description: "where would you like the resources built"
+        description: "Resource location"
+        required: true
+        default: "eastus"
+        type: string
+
+      storage_account_name:
+        description: "unique name for the storage account"
         required: true
         type: string
+
       database_count:
         description: "How many databases would you like?"
         required: true
@@ -56,6 +65,7 @@ jobs:
           echo "TF_VAR_name=${{ inputs.resource_group }}" >> $GITHUB_ENV
           echo "TF_VAR_database_count=${{ inputs.database_count }}" >> $GITHUB_ENV
           echo "TF_VAR_location=${{ inputs.resource_location }}" >> $GITHUB_ENV
+          echo "TF_VAR_storage_account_name=${{ inputs.storage_account_name }}" >> $GITHUB_ENV
 
       - name: "Login to Azure"
         uses: azure/login@v2
