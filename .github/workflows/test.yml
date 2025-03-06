@@ -1,0 +1,42 @@
+name: TFSec Test
+
+on: 
+  workflow_call:
+
+
+jobs:
+    # Run TfSec test against terraform config
+    tfsec_scan:
+        name: Run TfSec Scan
+        runs-on: ubuntu-lates
+
+        steps:
+
+        - name: Checkout Repo
+          uses: actions/checkout@v4
+
+        - name: tfsec
+          uses: aquasecurity/tfsec-action@v1.0.0
+          with:
+            soft_fail: true
+    
+    trivy_scan:
+        name: Trivy Scan for IaC
+        runs-on: ubuntu-lates
+
+        steps:
+        
+        - name: Checkout Repo
+          uses: aquasecurity/trivy-action@0.28.0
+          with:
+            scan-type: 'config'
+            hide-progress: true
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+            exit-code: '1'
+            severity: 'CRITICAL,HIGH'
+
+        - name: Upload Trivy scan results to GitHub Security tab
+          uses: github/codeql-action/upload-sarif@v3
+          with:
+            sarif_file: 'trivy-results.sarif'

@@ -1,0 +1,20 @@
+name: Main Workflow
+on:
+  push:
+  
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+  
+jobs: 
+ 
+    test:
+      uses: ./.github/workflow/test.yml
+    
+    deploy:
+      uses: ./.github/workflow/deploy.yml
+      needs: test
