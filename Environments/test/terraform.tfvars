@@ -53,4 +53,4 @@ web_application_name = "timsweb"
 
 contianer_access_type = "private"
 contianer_name        = "rg-cont"
-storage_account_name  = "rgstorage786404"
+# storage_account_name  = "rgstorage786404"

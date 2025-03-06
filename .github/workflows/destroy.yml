@@ -19,6 +19,7 @@ on:
         required: true
         default: "eastus"
         type: string
+        
 permissions:
     id-token: write
     contents: read
