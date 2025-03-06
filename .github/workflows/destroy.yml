@@ -19,7 +19,12 @@ on:
         required: true
         default: "eastus"
         type: string
-        
+
+      storage_account_name:
+        description: "unique name for the storage account"
+        required: true
+        type: string
+
 permissions:
     id-token: write
     contents: read
@@ -48,6 +53,7 @@ jobs:
       run: |
           echo "TF_VAR_name=${{ inputs.resource_group }}" >> $GITHUB_ENV
           echo "TF_VAR_location=${{ inputs.resource_location }}" >> $GITHUB_ENV
+          echo "TF_VAR_storage_account_name=${{ inputs.storage_account_name }}" >> $GITHUB_ENV
           
   
 
