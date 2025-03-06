@@ -1,8 +1,8 @@
 
 ### ------- Resource Group ---------- ###
 location    = "eastus2"
-environment = "test"
-name        = "tims-RG"
+environment = "dev"
+# name        = "tims-RG"
 
 ### ------- Virtual Network ------------ ###
 vnet_address   = ["10.0.10.0/24"]

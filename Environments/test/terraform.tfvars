@@ -2,7 +2,7 @@
 ### ------- Resource Group ---------- ###
 location    = "eastus2"
 environment = "test"
-name        = "tims-RG"
+# name        = "tims-RG"
 
 ### ------- Virtual Network ------------ ###
 vnet_address   = ["10.0.0.0/24"]
@@ -12,8 +12,8 @@ subnet_address = ["10.0.0.0/24"]
 
 ### -------- SQL Server --------------- ###
 sql_server_name      = "tims-sql-server"
-admin_login          = "smooth"
-admin_login_password = "Tsbvt52^B7QZ$C;r'A~8.9"
+# admin_login          = ""
+# admin_login_password = ""
 elasticpool_name     = "tims-elastic-pool"
 connection_string    = "value"
 vnet_rule_name       = "tims-vnet-rule"
