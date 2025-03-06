@@ -9,11 +9,16 @@ on:
         default: "test"
         type: environment
         
-      
       resource_group:
         description: "Enter a resource group name"
         required: true
         type: string   
+
+      resource_location:
+        description: "Resource location"
+        required: true
+        default: "eastus"
+        type: string
 permissions:
     id-token: write
     contents: read
@@ -42,6 +47,7 @@ jobs:
       run: |
           echo "TF_VAR_name=${{ inputs.resource_group }}" >> $GITHUB_ENV
           echo "TF_VAR_location=${{ inputs.resource_location }}" >> $GITHUB_ENV
+          
   
 
 
