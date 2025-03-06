@@ -52,25 +52,25 @@ jobs:
       - name: "Run Terraform init"
         run: terraform -chdir=Environments/${{ inputs.environment }} init
         env:
-          resource_group:  ${{ inputs.resource_group }}
+          TF_VAR_resource_group:  ${{ inputs.resource_group }}
         
       - name: "Run Terraform plan"
         run: terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan
         env:
-          resource_group:  ${{ inputs.resource_group }}
+          TF_VAR_resource_group:  ${{ inputs.resource_group }}
         
           
       - name: "Run Terraform Format"
         run: terraform -chdir=Environments/${{ inputs.environment }} fmt
         env:
-          resource_group:  ${{ inputs.resource_group }} 
+          TF_VAR_resource_group:  ${{ inputs.resource_group }} 
         
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
         run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan
         env:
-          resource_group:  ${{ inputs.resource_group }} 
+          TF_VAR_resource_group:  ${{ inputs.resource_group }} 
         
        
         
