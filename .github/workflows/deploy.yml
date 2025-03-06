@@ -55,18 +55,22 @@ jobs:
           resource_group:  ${{ inputs.resource_group }}
         
       - name: "Run Terraform plan"
-        run: |
-          export TF_LOG=DEBUG
-          terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" plan -out=tfplan 
+        run: terraform -chdir=Environments/${{ inputs.environment }} plan -out=tfplan
+        env:
+          resource_group:  ${{ inputs.resource_group }}
         
           
       - name: "Run Terraform Format"
-        run: terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" fmt
+        run: terraform -chdir=Environments/${{ inputs.environment }} fmt
+        env:
+          resource_group:  ${{ inputs.resource_group }} 
         
 
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=Environments/${{ inputs.environment }} -var="resource_group=${{ inputs.resource_group }}" apply -auto-approve tfplan
+        run: terraform -chdir=Environments/${{ inputs.environment }} apply -auto-approve tfplan
+        env:
+          resource_group:  ${{ inputs.resource_group }} 
         
        
         
