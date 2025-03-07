@@ -30,6 +30,9 @@ on:
           required: true
           type: string
           default: "1"
+permissions:
+    id-token: write
+    contents: read
   
 env:
     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
