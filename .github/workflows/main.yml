@@ -40,7 +40,9 @@ permissions:
   security-events: write
   actions: read
 
-
+env:
+    ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+    ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 jobs: 
  
     test:
