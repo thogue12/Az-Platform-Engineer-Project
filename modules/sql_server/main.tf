@@ -6,7 +6,7 @@ resource "azurerm_mssql_server" "this_sql_server" {
   version                      = "12.0"
   administrator_login          = var.admin_login
   administrator_login_password = var.admin_login_password
-  minimum_tls_version          = "1.2"
+
   
 
 }
