@@ -23,10 +23,6 @@ resource "azurerm_key_vault" "this_key_vault" {
 
     storage_permissions = var.storage_permissions
   }
-       network_acls {
-         bypass = "AzureServices"
-         default_action = "Deny"
-     }
 }
 
 resource "azurerm_key_vault_secret" "db_password" {
