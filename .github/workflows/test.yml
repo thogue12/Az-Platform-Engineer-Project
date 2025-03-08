@@ -52,6 +52,8 @@ jobs:
 
       - name: Setup Snyk
         uses: snyk/actions/setup@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
 
       - name: Authenticate with Snyk
         run: snyk auth $SNYK_TOKEN
