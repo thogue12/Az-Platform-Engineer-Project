@@ -47,16 +47,16 @@ jobs:
 
       steps:
 
-      - name: checkout repo
+      - name: checkout 
         uses: actions/checkout@v4
 
       - name: Setup Snyk
         run: npm install -g snyk
 
-      - name: Authenticate with Snyk
-        run: snyk auth $SNYK_TOKEN
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # - name: Authenticate with Snyk
+      #   run: snyk auth $SNYK_TOKEN
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk IaC
         uses: snyk/actions/iac@master
