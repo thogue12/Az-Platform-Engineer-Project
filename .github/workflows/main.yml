@@ -44,10 +44,10 @@ permissions:
 jobs: 
  
     test:
-      uses: ./.github/workflows/test.yml
+      uses:  .github/workflows/test.yml
     
     deploy:
-      uses: ./.github/workflows/deploy2.yml
+      uses: .github/workflows/deploy2.yml
       needs: test
       secrets: inherit
       with:
@@ -56,4 +56,4 @@ jobs:
         storage_account_name: ${{ inputs.storage_account_name }}
         database_count: ${{ inputs.database_count }}
         resource_location: ${{ inputs.resource_location }}   
-    
+   
