@@ -44,18 +44,16 @@ jobs:
     snyk_scan:
       name: Run Snyk to check Terraform config for issues
       runs-on: ubuntu-latest
-
       steps:
-
       - name: checkout 
         uses: actions/checkout@v4
   
-
       - uses: snyk/actions/setup@master
       - uses: actions/setup-go@v1
 
-
-      - name: Snyk test
-        run: snyk test
+      - name: Run Snyk to check Terraform config for issues
+        uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --serverity-threshold=high
