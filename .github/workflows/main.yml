@@ -47,7 +47,7 @@ jobs:
       uses:  ./.github/workflows/test.yml
     
     deploy:
-      uses: .github/workflows/deploy2.yml
+      uses: ./.github/workflows/deploy2.yml
       needs: test
       secrets: inherit
       with:
