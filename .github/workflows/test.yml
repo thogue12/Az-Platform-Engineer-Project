@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Snyk
-        uses: snyk/actions/setup@master
+        uses: npm install -g snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
 
