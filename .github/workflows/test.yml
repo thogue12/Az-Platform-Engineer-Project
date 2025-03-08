@@ -47,7 +47,12 @@ jobs:
 
       steps:
 
-      - uses: snyk/actions/setup@master
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Snyk
+        uses: snyk/actions/setup@master
+
       - name: Authenticate with Snyk
         run: snyk auth $SNYK_TOKEN
         env:
