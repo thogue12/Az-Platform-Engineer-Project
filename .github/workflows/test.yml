@@ -49,9 +49,6 @@ jobs:
 
       - name: checkout repo
         uses: actions/checkout@v4
-      
-      - name: setup snyk
-        uses: actions/setup@master
 
       - name: Authenticate with Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
