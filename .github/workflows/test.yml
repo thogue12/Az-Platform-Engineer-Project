@@ -42,7 +42,7 @@ jobs:
             sarif_file: 'trivy-results.sarif'
 
     snyk_scan:
-      name: Run Snyk to Terraform config for issues
+      name: Run Snyk to check Terraform config for issues
       runs-on: ubuntu-latest
 
       steps:
@@ -50,8 +50,17 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       
-      - name: Run Snyk
+      - name: setup snyk
+        uses: actions/checkout@master
+
+      - name: Snyk IaC
         uses: snyk/actions/iac@master
+      
+      - name: Run Snyk Test
+        run: snyk test
         env: 
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      
+
 
