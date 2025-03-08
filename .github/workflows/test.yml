@@ -52,8 +52,6 @@ jobs:
 
       - name: Setup Snyk
         run: npm install -g snyk
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
 
       - name: Authenticate with Snyk
         run: snyk auth $SNYK_TOKEN
@@ -62,6 +60,8 @@ jobs:
 
       - name: Snyk IaC
         uses: snyk/actions/iac@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
       
       - name: Run Snyk Test
         run: snyk test
