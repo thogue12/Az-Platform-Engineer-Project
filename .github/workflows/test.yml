@@ -49,16 +49,15 @@ jobs:
 
       - name: checkout 
         uses: actions/checkout@v4
-
-   
-      - uses: snyk/actions/setup@master
-      - uses: actions/setup-go@v1
-
-
+  
       - name: Snyk IaC
         uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
+          
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-go@v1
+
 
       
       - name: Upload result to GitHub Code Scanning
