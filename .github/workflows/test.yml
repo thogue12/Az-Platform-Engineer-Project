@@ -50,8 +50,9 @@ jobs:
       - name: checkout 
         uses: actions/checkout@v4
 
-      - name: Setup Snyk
-        uses: snyk/actions/setup@master
+   
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-go@v1
 
 
       - name: Snyk IaC
