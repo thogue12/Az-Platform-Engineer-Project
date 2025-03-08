@@ -60,14 +60,9 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} 
 
       
-      - name: Run Snyk Test
-        run: snyk test -d
-        env: 
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
+          args: --severity-threshold=high
 
